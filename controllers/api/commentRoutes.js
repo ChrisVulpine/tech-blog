@@ -1,24 +1,42 @@
+const express = require('express');
+const router = express.Router();
+const comments = []; // Assuming you have an array of comments
+
+const { Comment } = require('../../models');
+
 // Route to handle posting a comment
-app.post('/comments', (req, res) => {
-    const { author, text } = req.body;
-  
-    if (!author || !text) {
+router.post('/', (req, res) => {
+    const { author, content } = req.body;
+  console.log(req.body);
+
+    if (!author || !content) {
       return res.status(400).json({ error: 'Author and text are required' });
     }
-  
-    const newComment = {
-      id: comments.length + 1,
-      author,
-      text,
-      createdAt: new Date(),
-    };
-  
-    comments.push(newComment);
-    res.status(201).json(newComment);
+
+    Comment.create(req.body).then((comment) => {
+      console.log(comment);
+
+      comments.push(comment);
+      
+      res.status(201).json(comment);
+
+    }).catch((err) => {
+      console.log(err);
+      res.status(500).send('Internal Server Error!');
+    })
+
+    // const newComment = {
+    //   id: comments.length + 1,
+    //   author,
+    //   text,
+    //   createdAt: new Date(),
+    // };
+
   });
   
   // Route to handle deleting a comment
-  app.delete('/comments/:id', (req, res) => {
+
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
     const commentIndex = comments.findIndex(comment => comment.id === parseInt(id));
   
@@ -27,5 +45,13 @@ app.post('/comments', (req, res) => {
     }
   
     comments.splice(commentIndex, 1);
-    res.status(204).send();
+
+   res.status(200).json({ Success: 'Comment Deleted'});
+    
   });
+
+
+
+
+
+  module.exports = router;

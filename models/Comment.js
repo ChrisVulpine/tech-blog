@@ -1,47 +1,34 @@
 const { DataTypes, Model } = require('sequelize');
-const bcrypt = require('bcrypt');
 // ^^installed files   --    vv local files //
 const sequelize = require('../config/connection');
 
-class Comment extends Model {
-    constructor() {
-        return bcrypt.compareSync();
-    }
-}
+class Comment extends Model {}
 
-Comment.init({
-
+Comment.init(
+    
+    {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER,
         unique: true
-
-
     },
     content: {
         type: DataTypes.CHAR,
         allowNull: false,
+    },
+    author: {
+        type: DataTypes.CHAR,
+        allowNull: false,
     }
-},
-    {
-        // hooks: {
-        //     beforeCreate: async (newUserData) => {
-        //         newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        //         return newUserData;
-        //     },
-        //     beforeUpdate: async (updatedUserData) => {
-        //         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-        //         return updatedUserData;
-        //     },
-        // },
+}, 
+{
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'user',
+        modelName: 'comment',
     }
-
-)
+);
 
 module.exports = Comment
