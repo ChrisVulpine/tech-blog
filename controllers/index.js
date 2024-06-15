@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 
-const viewsRoutes = require("./views")
+const viewsRoutes = require("../controllers")
 const apiRoutes = require('./api');
 
 

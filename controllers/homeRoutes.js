@@ -6,7 +6,7 @@ router.get('/sign-up', (req, res) => {
       return;
     }
     // Otherwise, render the 'login' template
-    res.render('sign-up');
+    res.render('signup');
   });
   
   module.exports = router;
