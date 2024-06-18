@@ -11,5 +11,9 @@ router.get('/sign-up', (req, res) => {
     // Otherwise, render the 'login' template
     res.render('signup');
   });
+
+router.get('/', (req, res) => {
+  res.render('homepage');
+})
   
   module.exports = router;

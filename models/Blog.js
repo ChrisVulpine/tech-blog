@@ -1,13 +1,15 @@
 const { DataTypes, Model } = require('sequelize');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 // ^^installed files   --    vv local files //
 const sequelize = require('../config/connection');
 
-class Blog extends Model {
-    constructor() {
-        return bcrypt.compareSync();
-    }
-}
+// class Blog extends Model {
+//     constructor() {
+//         return bcrypt.compareSync();
+//     }
+// }
+
+class Blog extends Model {}
 
 Blog.init({
 
