@@ -35,7 +35,7 @@ router.post('/', withAuth, async (req, res) => {
     res.status(500).send('Internal Server Error!');
   })
 
-  
+  res.render('blogpost');
 });
 
 // Route to update an existing blog post
